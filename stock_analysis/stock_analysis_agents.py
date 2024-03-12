@@ -1,8 +1,10 @@
+import os
+
 from crewai import Agent
 from langchain_community.tools.google_finance import GoogleFinanceQueryRun
 from langchain_community.utilities.google_finance import GoogleFinanceAPIWrapper
 
-from chatglm.chat_zhipu_ai import ChatZhipuAI
+from chatgpt.chat_open_ai import MyChatOpenAI
 from tools.browser_tools import BrowserTools
 from tools.calculator_tools import CalculatorTools
 from tools.search_tools import SearchTools
@@ -10,9 +12,8 @@ from tools.sec_tools import SECTools
 
 
 def get_llm():
-    # return MyChatOpenAI(temperature=0, model_name=os.getenv("OPENAI_MODEL_NAME"))
-    return ChatZhipuAI(model="glm-4", temperature=0.1)
-
+    return MyChatOpenAI(temperature=0, model_name=os.getenv("OPENAI_MODEL_NAME"))
+    # return MyChatZhipuAI(model="glm-4", temperature=0.1)
 
 
 class StockAnalysisAgents():

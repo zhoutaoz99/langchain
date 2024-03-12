@@ -168,13 +168,13 @@ class MyChatZhipuAI(ChatZhipuAI):
         print(f"\n----------------messages----------------\n")
         print(f"\nmessages:{message_dicts}\n")
         print(f"\n----------------messages end----------------\n")
-        response = self.create(messages=message_dicts, **params)
+        response = self.create(message_dicts, **params)
         print(f"\n----------------response----------------\n")
         print(f"\nresponse:{response}\n")
         print(f"\n----------------response end----------------\n")
         return self._create_chat_result(response)
 
-    def create(self, messages: Any, model, temperature, tools) -> Any:  # type: ignore[override]
+    def create(self, messages: Any, model, temperature, tools=None, **params) -> Any:  # type: ignore[override]
         response = self.zhipuai.chat.completions.create(
             model=model,  # 填写需要调用的模型名称
             messages=messages,
